@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vrunda Tambe – Product Designer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=DM+Sans:wght@400;500;700&family=DM+Mono:wght@400;500&family=Google+Sans+Mono:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #F6F1EB;
+            color: #2D2D2D;
+            min-height: 100vh;
+            padding: 60px 24px;
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            margin-left: 24px;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .header-text h1 {
+            font-family: 'Comfortaa', cursive;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #3E67FA;
+            margin-bottom: 4px;
+        }
+
+        .tagline {
+            font-family: 'Google Sans Mono', monospace;
+            font-size: 18px;
+            color: #000000;
+        }
+
+        /* Intro */
+        .intro {
+            font-family: 'Comfortaa', cursive;
+            font-size: 1.15rem;
+            margin-bottom: 48px;
+            color: #000000;
+        }
+
+        .intro a {
+            color: #3E67FA;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .intro a:hover {
+            text-decoration: underline;
+        }
+
+        /* Main content grid */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 48px;
+        }
+
+        @media (max-width: 600px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+
+        /* Section headers */
+        .section-header {
+            font-family: 'Comfortaa', cursive;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .section-header.work {
+            color: #3E67FA;
+        }
+
+        .section-header.fun {
+            color: #3E67FA;
+        }
+
+        .section-icon {
+            width: 20px;
+            height: 20px;
+            stroke-width: 2;
+        }
+
+        /* Work items */
+        .work-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .work-item {
+            display: flex;
+            flex-wrap: nowrap;
+            align-items: baseline;
+            gap: 8px;
+            white-space: nowrap;
+            border-bottom: 1px solid #EEEEEE;
+            padding-bottom: 16px;
+        }
+
+        .company {
+            font-family: 'Google Sans Mono', monospace;
+            font-weight: 600;
+            font-size: 18px;
+            color: #000000;
+        }
+
+        .role {
+            font-family: 'Google Sans Mono', monospace;
+            font-weight: 400;
+            font-size: 18px;
+            color: #3F4145;
+        }
+
+        .dates {
+            font-family: 'Google Sans Mono', monospace;
+            font-weight: 300;
+            font-size: 18px;
+            color: #747880;
+        }
+
+        /* Fun links */
+        .fun-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .fun-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #000000;
+            text-decoration: none;
+            font-family: 'Google Sans Mono', monospace;
+            font-weight: 400;
+            font-size: 18px;
+            white-space: nowrap;
+            border-bottom: 1px solid #EEEEEE;
+            padding-bottom: 16px;
+            transition: color 0.2s ease;
+        }
+
+        .fun-link:hover {
+            color: #3E67FA;
+        }
+
+        .arrow-icon {
+            width: 18px;
+            height: 18px;
+            color: #747880;
+            stroke-width: 2;
+            transition: transform 0.2s ease;
+        }
+
+        .fun-link:hover .arrow-icon {
+            transform: translate(2px, -2px);
+        }
+
+        /* Bottom links */
+        .bottom-links {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 56px;
+        }
+
+        .bottom-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #2D2D2D;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .bottom-link:hover {
+            color: #3E67FA;
+        }
+
+        .bottom-link svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Footer icons */
+        .footer-icons {
+            display: flex;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+            gap: 24px;
+            padding-top: 20px;
+            opacity: 0.4;
+        }
+
+        .footer-icons svg,
+        .footer-icons i {
+            width: 28px;
+            height: 28px;
+            stroke: #8B8B8B;
+            stroke-width: 1.5;
+            fill: none;
+            color: #8B8B8B;
+        }
+
+        /* Mobile adjustments */
+        @media (max-width: 500px) {
+            body {
+                padding: 40px 20px;
+            }
+
+            .header {
+                flex-direction: column;
+                text-align: center;
+                gap: 16px;
+            }
+
+            .header-text h1 {
+                font-size: 1.75rem;
+            }
+
+            .bottom-links {
+                justify-content: center;
+            }
+
+            .footer-icons {
+                gap: 16px;
+            }
+
+            .footer-icons svg {
+                width: 24px;
+                height: 24px;
+            }
+        }
+    </style>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <img src="avatar.png" alt="Vrunda's illustrated portrait" class="avatar" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2248%22 fill=%22%23F6F1EB%22 stroke=%22%232D2D2D%22 stroke-width=%222%22/><text x=%2250%22 y=%2258%22 text-anchor=%22middle%22 font-size=%2212%22 fill=%22%23999%22>Add avatar.png</text></svg>'">
+            <div class="header-text">
+                <h1>Hi, I'm Vrunda!</h1>
+                <p class="tagline">Product Designer 👩‍💻, Cozy gamer 🎮, Cake fiend 🍰</p>
+            </div>
+        </header>
+
+        <!-- Intro -->
+        <p class="intro">
+            Currently designing AI-native experiences at <a href="https://www.fieldguide.io/" target="_blank" rel="noopener">Fieldguide</a>.
+        </p>
+
+        <!-- Main content -->
+        <div class="content-grid">
+            <!-- Work section -->
+            <section>
+                <h2 class="section-header work">
+                    <i data-lucide="plug" class="section-icon"></i> Work
+                </h2>
+                <div class="work-list">
+                    <div class="work-item">
+                        <span class="company">Fieldguide</span>
+                        <span class="role">Product Designer</span>
+                        <span class="dates">2025 – now</span>
+                    </div>
+                    <div class="work-item">
+                        <span class="company">Willow</span>
+                        <span class="role">Product Designer</span>
+                        <span class="dates">2022 – 2025</span>
+                    </div>
+                    <div class="work-item">
+                        <span class="company">Fifth Tribe</span>
+                        <span class="role">UI/UX Designer</span>
+                        <span class="dates">2021 – 2022</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Fun section -->
+            <section>
+                <h2 class="section-header fun">
+                    <i data-lucide="line-squiggle" class="section-icon"></i> Fun
+                </h2>
+                <div class="fun-list">
+                    <a href="https://nunodasneves.itch.io/plantorium" target="_blank" rel="noopener" class="fun-link">
+                        Plantorium: A cozy game <i data-lucide="arrow-up-right" class="arrow-icon"></i>
+                    </a>
+                    <a href="https://dribbble.com/grilldcheese" target="_blank" rel="noopener" class="fun-link">
+                        My illustrations <i data-lucide="arrow-up-right" class="arrow-icon"></i>
+                    </a>
+                </div>
+            </section>
+        </div>
+
+        <!-- Bottom links -->
+        <div class="bottom-links">
+            <a href="resume.pdf" target="_blank" class="bottom-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                    <polyline points="10 9 9 9 8 9"></polyline>
+                </svg>
+                Resume
+            </a>
+            <a href="https://www.linkedin.com/in/vrunda-tambe/" target="_blank" rel="noopener" class="bottom-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                </svg>
+                Linkedin
+            </a>
+        </div>
+
+        <!-- Footer icons - Lucide icons -->
+        <div class="footer-icons">
+            <i data-lucide="flower"></i>
+            <i data-lucide="dog"></i>
+            <i data-lucide="croissant"></i>
+            <i data-lucide="heart"></i>
+            <i data-lucide="ice-cream-cone"></i>
+            <i data-lucide="piano"></i>
+            <i data-lucide="pizza"></i>
+            <i data-lucide="smile"></i>
+            <i data-lucide="origami"></i>
+            <i data-lucide="volleyball"></i>
+            <i data-lucide="brush"></i>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
