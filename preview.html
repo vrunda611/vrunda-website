@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vrunda Tambe – Product Designer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #F6F1EB;
+            color: #2D2D2D;
+            min-height: 100vh;
+            padding: 40px 24px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+            background: #fff;
+            border: 2px solid #e0e0e0;
+        }
+
+        .header-text h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #4A90D9;
+            margin-bottom: 4px;
+        }
+
+        .tagline {
+            font-size: 1.1rem;
+            color: #5A5A5A;
+        }
+
+        .intro {
+            font-size: 1.15rem;
+            margin-bottom: 48px;
+            color: #2D2D2D;
+        }
+
+        .intro a {
+            color: #4A90D9;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .intro a:hover {
+            text-decoration: underline;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            margin-bottom: 48px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .section-header.work {
+            color: #4A90D9;
+        }
+
+        .section-header.fun {
+            color: #D4A857;
+        }
+
+        .section-icon {
+            font-size: 1.2rem;
+        }
+
+        .work-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .work-item {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 8px;
+        }
+
+        .company {
+            font-weight: 700;
+            color: #2D2D2D;
+        }
+
+        .role {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.9rem;
+            color: #6B6B6B;
+        }
+
+        .dates {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.9rem;
+            color: #9B9B9B;
+        }
+
+        .fun-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .fun-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #2D2D2D;
+            text-decoration: none;
+            font-family: 'DM Mono', monospace;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+        }
+
+        .fun-link:hover {
+            color: #4A90D9;
+        }
+
+        .arrow {
+            font-size: 0.85rem;
+            transition: transform 0.2s ease;
+        }
+
+        .fun-link:hover .arrow {
+            transform: translate(2px, -2px);
+        }
+
+        .bottom-links {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 56px;
+        }
+
+        .bottom-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #2D2D2D;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .bottom-link:hover {
+            color: #4A90D9;
+        }
+
+        .bottom-link svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .footer-icons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 24px;
+            padding-top: 20px;
+            opacity: 0.4;
+        }
+
+        .footer-icons svg {
+            width: 28px;
+            height: 28px;
+            stroke: #8B8B8B;
+            stroke-width: 1.5;
+            fill: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <svg class="avatar" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="50" cy="50" r="48" fill="#fff" stroke="#ddd" stroke-width="1"/>
+                <text x="50" y="54" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#999">avatar.png</text>
+            </svg>
+            <div class="header-text">
+                <h1>Hi, I'm Vrunda!</h1>
+                <p class="tagline">Product Designer 🏔️, Cozy gamer 🎮, Cake fiend 🍰</p>
+            </div>
+        </header>
+
+        <p class="intro">
+            Currently designing AI-native experiences at <a href="https://www.fieldguide.io/" target="_blank" rel="noopener">Fieldguide</a>.
+        </p>
+
+        <div class="content-grid">
+            <section>
+                <h2 class="section-header work">
+                    <span class="section-icon">✏️</span> Work
+                </h2>
+                <div class="work-list">
+                    <div class="work-item">
+                        <span class="company">Fieldguide</span>
+                        <span class="role">Product Designer</span>
+                        <span class="dates">2025 – now</span>
+                    </div>
+                    <div class="work-item">
+                        <span class="company">Willow</span>
+                        <span class="role">Product Designer</span>
+                        <span class="dates">2022 – 2025</span>
+                    </div>
+                    <div class="work-item">
+                        <span class="company">Fifth Tribe</span>
+                        <span class="role">UI/UX Designer</span>
+                        <span class="dates">2021 – 2022</span>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="section-header fun">
+                    <span class="section-icon">🥸</span> Fun
+                </h2>
+                <div class="fun-list">
+                    <a href="#" class="fun-link">
+                        Plantorium: A cozy game <span class="arrow">↗</span>
+                    </a>
+                    <a href="#" class="fun-link">
+                        My illustrations <span class="arrow">↗</span>
+                    </a>
+                </div>
+            </section>
+        </div>
+
+        <div class="bottom-links">
+            <a href="#" class="bottom-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                </svg>
+                Resume
+            </a>
+            <a href="#" class="bottom-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                </svg>
+                Linkedin
+            </a>
+        </div>
+
+        <div class="footer-icons">
+            <svg viewBox="0 0 24 24"><path d="M6 9c-2 0-3.5 1.5-3.5 3.5S4 16 6 16c1.5 0 3-1 4-2m8-5c2 0 3.5 1.5 3.5 3.5S20 16 18 16c-1.5 0-3-1-4-2m-4-7c-1.5 0-3 1-3.5 2.5L4 16m6-9c1.5 0 3 1 3.5 2.5L16 16m-6-9l2 2m-2-2l-2 2"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 19c-4 0-7-2-7-5 0-2 1-3.5 2.5-4.5M12 19c4 0 7-2 7-5 0-2-1-3.5-2.5-4.5M5 4l2 5.5M19 4l-2 5.5M9 15c.5.5 1.5 1 3 1s2.5-.5 3-1M10 12h.01M14 12h.01"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 4C7 4 3 8 3 12h18c0-4-4-8-9-8zM8 12v7a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-7"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M6 3h12l4 6-10 12L2 9z M2 9h20 M12 21L8 9 M12 21l4-12 M8 9l4-6 4 6"/></svg>
+            <svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="4"/><path d="M6 12h4M8 10v4M14 10h.01M18 12h.01"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M8 21l4-10 4 10M4 21l6-14 2.5 6M20 21l-6-14-1 2.5"/></svg>
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9 10h.01M15 10h.01M8 14s1.5 2 4 2 4-2 4-2"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M6 21c4-4 8-4 12-8 1-1 2-3 2-5s-2-4-4-4c-4 0-8 4-10 10l-1 6 6-1"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 21V11M12 11c-3 0-6-2-6-5 0-2 2-4 6-4M12 11c3 0 6-2 6-5 0-2-2-4-6-4"/></svg>
+            <svg viewBox="0 0 24 24"><ellipse cx="8" cy="9" rx="4" ry="5"/><ellipse cx="16" cy="15" rx="4" ry="5"/><path d="M10 13c1-1 3-1 4 0"/></svg>
+        </div>
+    </div>
+</body>
+</html>
