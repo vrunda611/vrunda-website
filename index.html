@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,9 @@
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=DM+Sans:wght@400;500;700&family=DM+Mono:wght@400;500&family=Google+Sans+Mono:wght@300;400;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=DM+Sans:wght@400;500;700&family=DM+Mono:wght@400;500&family=Google+Sans+Mono:wght@300;400;600&display=swap"
+        rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -29,7 +32,7 @@
         .container {
             max-width: 900px;
             margin: 0 auto;
-            margin-left: 24px;
+            width: 100%;
         }
 
         /* Header */
@@ -129,10 +132,9 @@
 
         .work-item {
             display: flex;
-            flex-wrap: nowrap;
+            flex-wrap: wrap;
             align-items: baseline;
             gap: 8px;
-            white-space: nowrap;
             border-bottom: 1px solid #EEEEEE;
             padding-bottom: 16px;
         }
@@ -174,7 +176,6 @@
             font-family: 'Google Sans Mono', monospace;
             font-weight: 400;
             font-size: 18px;
-            white-space: nowrap;
             border-bottom: 1px solid #EEEEEE;
             padding-bottom: 16px;
             transition: color 0.2s ease;
@@ -257,10 +258,22 @@
             color: #8B8B8B;
         }
 
+        /* Tablet / small desktop adjustments */
+        @media (max-width: 768px) {
+            .work-item {
+                flex-direction: column;
+                gap: 4px;
+            }
+
+            .content-grid {
+                gap: 40px;
+            }
+        }
+
         /* Mobile adjustments */
         @media (max-width: 500px) {
             body {
-                padding: 40px 20px;
+                padding: 40px 16px;
             }
 
             .header {
@@ -273,8 +286,29 @@
                 font-size: 1.75rem;
             }
 
+            .tagline {
+                font-size: 15px;
+            }
+
+            .company,
+            .role,
+            .dates {
+                font-size: 15px;
+            }
+
+            .fun-link {
+                font-size: 15px;
+                padding-bottom: 14px;
+                padding-top: 2px;
+                min-height: 44px;
+            }
+
             .bottom-links {
                 justify-content: center;
+            }
+
+            .bottom-link {
+                min-height: 44px;
             }
 
             .footer-icons {
@@ -290,11 +324,13 @@
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
+
 <body>
     <div class="container">
         <!-- Header -->
         <header class="header">
-            <img src="avatar.png" alt="Vrunda's illustrated portrait" class="avatar" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2248%22 fill=%22%23F6F1EB%22 stroke=%22%232D2D2D%22 stroke-width=%222%22/><text x=%2250%22 y=%2258%22 text-anchor=%22middle%22 font-size=%2212%22 fill=%22%23999%22>Add avatar.png</text></svg>'">
+            <img src="avatar.png" alt="Vrunda's illustrated portrait" class="avatar"
+                onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2248%22 fill=%22%23F6F1EB%22 stroke=%22%232D2D2D%22 stroke-width=%222%22/><text x=%2250%22 y=%2258%22 text-anchor=%22middle%22 font-size=%2212%22 fill=%22%23999%22>Add avatar.png</text></svg>'">
             <div class="header-text">
                 <h1>Hi, I'm Vrunda!</h1>
                 <p class="tagline">Product Designer 👩‍💻, Cozy gamer 🎮, Cake fiend 🍰</p>
@@ -303,7 +339,8 @@
 
         <!-- Intro -->
         <p class="intro">
-            Currently designing AI-native experiences at <a href="https://www.fieldguide.io/" target="_blank" rel="noopener">Fieldguide</a>.
+            Currently designing AI-native experiences at <a href="https://www.fieldguide.io/" target="_blank"
+                rel="noopener">Fieldguide</a>.
         </p>
 
         <!-- Main content -->
@@ -346,7 +383,8 @@
                     </a>
                     <!-- Bechdel Test checker tool -->
                     <a href="https://dotheytalk.com" target="_blank" rel="noopener" class="fun-link">
-                        DoTheyTalk.com - Does ur fav movie pass the Bechdel Test? <i data-lucide="arrow-up-right" class="arrow-icon"></i>
+                        DoTheyTalk.com - Does ur fav movie pass the Bechdel Test? <i data-lucide="arrow-up-right"
+                            class="arrow-icon"></i>
                     </a>
                 </div>
             </section>
@@ -384,4 +422,5 @@
         lucide.createIcons();
     </script>
 </body>
+
 </html>
