@@ -8,10 +8,17 @@
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=DM+Sans:wght@400;500;700&family=DM+Mono:wght@400;500&family=Google+Sans+Mono:wght@300;400;600&display=swap"
-        rel="stylesheet">
+    <!-- Arimo from Google Fonts: used for work item text -->
+    <link href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        /* Loads the local Acorn font file for headings and the nav */
+        @font-face {
+            font-family: 'Acorn';
+            src: url('acorn-7.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -19,428 +26,416 @@
         }
 
         body {
-            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-            background-color: #F6F1EB;
-            color: #2D2D2D;
-            min-height: 100vh;
-            padding: 60px 24px;
-            line-height: 1.6;
-            display: flex;
-            justify-content: center;
+            font-family: 'Arimo', sans-serif;
+            background-color: #ffffff;
+            color: #22272d;
         }
 
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            width: 100%;
-        }
-
-        /* Header */
-        .header {
-            display: flex;
-            align-items: center;
-            gap: 24px;
-            margin-bottom: 40px;
-        }
-
-        .avatar {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            object-fit: cover;
-            flex-shrink: 0;
-        }
-
-        .header-text h1 {
-            font-family: 'Comfortaa', cursive;
-            font-size: 2rem;
-            font-weight: 700;
-            color: #3E67FA;
-            margin-bottom: 4px;
-        }
-
-        .tagline {
-            font-family: 'Google Sans Mono', monospace;
-            font-size: 18px;
-            color: #000000;
-        }
-
-        /* Intro */
-        .intro {
-            font-family: 'Comfortaa', cursive;
-            font-size: 1.15rem;
-            margin-bottom: 48px;
-            color: #000000;
-        }
-
-        .intro a {
-            color: #3E67FA;
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        .intro a:hover {
-            text-decoration: underline;
-        }
-
-        /* Main content grid */
-        .content-grid {
+        /*
+            .hero-screen is exactly one viewport tall — no more, no less.
+            Using height (not min-height) is what locks it to exactly 100vh,
+            so the portfolio grid always starts below the fold.
+            The grid rows inside split the space into: header (auto) + content (rest).
+        */
+        .hero-screen {
+            height: 100vh;
+            overflow: hidden; /* hard backstop — nothing can bleed into the grid below */
+            padding: 40px;
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            margin-bottom: 48px;
+            grid-template-rows: auto 1fr;
         }
 
-        @media (max-width: 600px) {
-            .content-grid {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-        }
+        /* ── Header ── */
 
-        /* Section headers */
-        .section-header {
-            font-family: 'Comfortaa', cursive;
+        /*
+            flex + space-between puts name on the left, email in the middle, Work on the right.
+        */
+        .site-header {
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 8px;
-            margin-bottom: 20px;
-            font-size: 1.1rem;
-            font-weight: 600;
         }
 
-        .section-header.work {
-            color: #3E67FA;
+        /* Shared styles for all three header items */
+        .name,
+        .email,
+        .work-label {
+            font-family: 'Acorn', sans-serif;
+            font-size: 16px;
+            letter-spacing: 0.16px;
+            white-space: nowrap;
         }
 
-        .section-header.fun {
-            color: #3E67FA;
+        .name  { color: #22272d; }
+        .email { color: #8290a2; }
+
+        /* "Work" is muted — it's a section label, not a nav link */
+        .work-label { color: #8290a2; }
+
+        /* ── Content wrapper ── */
+
+        /*
+            Two things happening here:
+            1. align-self: center → the wrapper sits in the middle of the 1fr grid row,
+               so the hero text appears vertically centered on the page.
+            2. align-items: flex-end → inside the wrapper, both children (hero and work
+               section) have their BOTTOM EDGES locked to the same line.
+            Because the wrapper is only as tall as its tallest child (the hero text),
+            the hero fills it completely and the work section's bottom snaps to the
+            hero's bottom — exactly as shown in the Figma.
+        */
+        .content {
+            align-self: center;
+            display: flex;
+            align-items: flex-end;
+            gap: 60px;
         }
 
-        .section-icon {
-            width: 20px;
-            height: 20px;
-            stroke-width: 2;
+        /* ── Hero text ── */
+
+        /* flex: 1 makes the hero take up all horizontal space not used by the work section */
+        .hero {
+            flex: 1;
         }
 
-        /* Work items */
-        .work-list {
+        /*
+            clamp(min, preferred, max):
+            - 72px minimum so it's still readable on small screens
+            - 12.5vw scales proportionally with viewport width
+            - 160px maximum matches the Figma design
+        */
+        .hero h1 {
+            font-family: 'Acorn', sans-serif;
+            /*
+                min(13vw, 18vh) picks whichever is smaller:
+                - 13vw scales the text up on wide screens
+                - 18vh kicks in on short screens to stop 4 lines from
+                  overflowing the 100vh hero container
+            */
+            font-size: clamp(48px, min(13vw, 18vh), 400px);
+            line-height: 0.94;
+            font-weight: 700;
+        }
+
+        /* Default accent color — overridden by JS on each page load */
+        :root { --curious-color: #708fb7; }
+
+        .hero .text-dark { display: block; color: #22272d; }
+        .hero .text-blue { display: block; color: var(--curious-color); }
+
+        /* Each letter fades in/out during the flicker animation */
+        .word span {
+            transition: opacity 0.18s ease-in-out;
+        }
+
+        /* ── Work section ── */
+
+        /*
+            flex-shrink: 0 prevents the work section from squishing.
+            Its bottom edge is controlled by align-items: flex-end on .content.
+        */
+        .work-section {
+            width: 280px;
+            flex-shrink: 0;
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 40px;
         }
 
+        /* Each work entry: company/line/year row, then role below */
         .work-item {
             display: flex;
-            flex-wrap: wrap;
-            align-items: baseline;
+            flex-direction: column;
             gap: 8px;
-            border-bottom: 1px solid #EEEEEE;
-            padding-bottom: 16px;
+        }
+
+        .work-item-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
 
         .company {
-            font-family: 'Google Sans Mono', monospace;
-            font-weight: 600;
-            font-size: 18px;
-            color: #000000;
+            font-family: 'Arimo', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            color: #22272d;
+            white-space: nowrap;
+            min-width: 75px;
+        }
+
+        /*
+            flex: 1 makes this span stretch to fill whatever space is left
+            between the company name and the year. The visible line is
+            just a 1px tall block with a background colour.
+        */
+        .work-line {
+            flex: 1;
+            height: 1px;
+            background-color: #c8d3e0;
+        }
+
+        .year {
+            font-family: 'Arimo', sans-serif;
+            font-weight: 400;
+            font-size: 14px;
+            color: var(--curious-color);
+            white-space: nowrap;
         }
 
         .role {
-            font-family: 'Google Sans Mono', monospace;
+            font-family: 'Arimo', sans-serif;
             font-weight: 400;
-            font-size: 18px;
-            color: #3F4145;
+            font-size: 14px;
+            color: #22272d;
+            text-align: right;
         }
 
-        .dates {
-            font-family: 'Google Sans Mono', monospace;
-            font-weight: 300;
-            font-size: 18px;
-            color: #747880;
+        /* ── Portfolio grid ── */
+
+        /*
+            No negative margins needed — body has no padding now.
+            The grid just sits naturally after .hero-screen and goes edge-to-edge.
+        */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            /*
+                25vw = one quarter of the viewport width.
+                With 4 columns each taking 25% of the width, this makes cells square.
+            */
+            grid-auto-rows: 25vw;
+            border-top: 1px solid #e2e2e2;
+            border-left: 1px solid #e2e2e2;
+            background-color: #ffffff;
         }
 
-        /* Fun links */
-        .fun-list {
+        /*
+            Each cell gets a right and bottom border.
+            Combined with the grid's top and left border, this forms a complete grid line on all sides.
+        */
+        .grid-cell {
+            border-right: 1px solid #e2e2e2;
+            border-bottom: 1px solid #e2e2e2;
             display: flex;
             flex-direction: column;
-            gap: 16px;
         }
 
-        .fun-link {
-            display: inline-flex;
+        /*
+            Label row at the top of each filled cell:
+            project name on the left, category on the right.
+        */
+        .cell-meta {
+            display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 6px;
-            color: #000000;
-            text-decoration: none;
-            font-family: 'Google Sans Mono', monospace;
-            font-weight: 400;
-            font-size: 18px;
-            border-bottom: 1px solid #EEEEEE;
-            padding-bottom: 16px;
-            transition: color 0.2s ease;
-        }
-
-        .fun-link:hover {
-            color: #3E67FA;
-        }
-
-        .arrow-icon {
-            width: 18px;
-            height: 18px;
-            color: #747880;
-            stroke-width: 2;
+            /*
+                clamp(min, preferred, max):
+                padding and font-size scale with viewport width (vw)
+                so they shrink as the grid shrinks, keeping proportions consistent.
+            */
+            padding: clamp(5px, 0.7vw, 10px) clamp(7px, 1vw, 14px);
+            font-family: 'Arimo', sans-serif;
+            font-size: clamp(8px, 0.75vw, 11px);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #888888;
             flex-shrink: 0;
-            transition: transform 0.2s ease;
         }
 
-        .fun-link:hover .arrow-icon {
-            transform: translate(2px, -2px);
+        /*
+            The grey placeholder rectangle.
+            flex: 1 makes it fill all remaining height in the cell below the label.
+        */
+        .cell-fill {
+            flex: 1;
+            background-color: #d0d0d0;
         }
 
-        /* Bottom links */
-        .bottom-links {
-            display: flex;
-            gap: 24px;
-            margin-bottom: 56px;
-        }
+        /* ── Mobile ── */
+        @media (max-width: 700px) {
+            .hero-screen {
+                height: auto;
+                min-height: 100vh;
+                padding: 32px 24px;
+            }
 
-        .bottom-link {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            font-family: 'Comfortaa', cursive;
-            font-size: 1.15rem;
-            color: #000000;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.2s ease;
-        }
-
-        .bottom-link svg,
-        .bottom-link i {
-            display: flex;
-            align-items: center;
-        }
-
-        .bottom-link:hover {
-            color: #3E67FA;
-        }
-
-        .bottom-link svg {
-            width: 18px;
-            height: 18px;
-        }
-
-        .bottom-icon {
-            width: 20px;
-            height: 20px;
-            color: #3E67FA;
-        }
-
-        /* Footer icons */
-        .footer-icons {
-            display: flex;
-            justify-content: flex-start;
-            flex-wrap: wrap;
-            gap: 24px;
-            padding-top: 20px;
-            opacity: 0.4;
-        }
-
-        .footer-icons svg,
-        .footer-icons i {
-            width: 28px;
-            height: 28px;
-            stroke: #8B8B8B;
-            stroke-width: 1.5;
-            fill: none;
-            color: #8B8B8B;
-        }
-
-        /* Tablet / small desktop adjustments */
-        @media (max-width: 768px) {
-            .work-item {
+            /* Stack header items vertically on mobile */
+            .site-header {
                 flex-direction: column;
+                align-items: flex-start;
                 gap: 4px;
             }
 
-            .content-grid {
-                gap: 40px;
-            }
-        }
-
-        /* Mobile adjustments */
-        @media (max-width: 500px) {
-            body {
-                padding: 40px 16px;
-            }
-
-            .header {
+            /* Stack hero and work vertically, left-aligned */
+            .content {
                 flex-direction: column;
-                text-align: center;
-                gap: 16px;
+                align-items: flex-start;
+                gap: 48px;
+                margin-top: 48px;
             }
 
-            .intro {
-                text-align: center;
-            }
-
-            .work-item {
-                align-items: center;
-                text-align: center;
-            }
-
-            .fun-link {
-                justify-content: center;
-                text-align: center;
-            }
-
-            .section-header {
-                justify-content: center;
-            }
-
-            .header-text h1 {
-                font-size: 1.75rem;
-            }
-
-            .tagline {
-                font-size: 15px;
-            }
-
-            .company,
-            .role,
-            .dates {
-                font-size: 15px;
-            }
-
-            .fun-link {
-                font-size: 15px;
-                padding-bottom: 14px;
-                padding-top: 2px;
-                min-height: 44px;
-            }
-
-            .bottom-links {
-                justify-content: center;
-            }
-
-            .bottom-link {
-                min-height: 44px;
-            }
-
-            .footer-icons {
-                justify-content: center;
-                gap: 16px;
-            }
-
-            .footer-icons svg {
-                width: 24px;
-                height: 24px;
+            .work-section {
+                width: 100%;
+                gap: 32px;
             }
         }
     </style>
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 
 <body>
-    <div class="container">
-        <!-- Header -->
-        <header class="header">
-            <img src="avatar.png" alt="Vrunda's illustrated portrait" class="avatar"
-                onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2248%22 fill=%22%23F6F1EB%22 stroke=%22%232D2D2D%22 stroke-width=%222%22/><text x=%2250%22 y=%2258%22 text-anchor=%22middle%22 font-size=%2212%22 fill=%22%23999%22>Add avatar.png</text></svg>'">
-            <div class="header-text">
-                <h1>Hi, I'm Vrunda!</h1>
-                <p class="tagline">Product Designer 👩‍💻, Cozy gamer 🎮, Cake fiend 🍰</p>
-            </div>
-        </header>
 
-        <!-- Intro -->
-        <p class="intro">
-            Currently designing AI-native experiences at <a href="https://www.fieldguide.io/" target="_blank"
-                rel="noopener">Fieldguide</a>.
-        </p>
+    <!-- Hero screen: locked to exactly 100vh so the grid only appears on scroll -->
+    <div class="hero-screen">
 
-        <!-- Main content -->
-        <div class="content-grid">
-            <!-- Work section -->
-            <section>
-                <h2 class="section-header work">
-                    <i data-lucide="plug" class="section-icon"></i> Work
-                </h2>
-                <div class="work-list">
-                    <div class="work-item">
-                        <span class="company">Fieldguide</span>
-                        <span class="role">Product Designer</span>
-                        <span class="dates">2025 – now</span>
-                    </div>
-                    <div class="work-item">
-                        <span class="company">Willow</span>
-                        <span class="role">Product Designer</span>
-                        <span class="dates">2022 – 2025</span>
-                    </div>
-                    <div class="work-item">
-                        <span class="company">Fifth Tribe</span>
-                        <span class="role">UI/UX Designer</span>
-                        <span class="dates">2021 – 2022</span>
-                    </div>
-                </div>
-            </section>
+    <!-- Header: name (left) · email (center) · Work label (right) -->
+    <header class="site-header">
+        <span class="name">Vrunda Tambe</span>
+        <span class="email">vrunda611@gmail.com</span>
+        <span class="work-label">Work</span>
+    </header>
 
-            <!-- Fun section -->
-            <section>
-                <h2 class="section-header fun">
-                    <i data-lucide="line-squiggle" class="section-icon"></i> Fun
-                </h2>
-                <div class="fun-list">
-                    <a href="https://nunodasneves.itch.io/plantorium" target="_blank" rel="noopener" class="fun-link">
-                        Plantorium: A cozy game <i data-lucide="arrow-up-right" class="arrow-icon"></i>
-                    </a>
-                    <a href="https://dribbble.com/grilldcheese" target="_blank" rel="noopener" class="fun-link">
-                        My illustrations <i data-lucide="arrow-up-right" class="arrow-icon"></i>
-                    </a>
-                    <!-- Bechdel Test checker tool -->
-                    <a href="https://dotheytalk.com" target="_blank" rel="noopener" class="fun-link">
-                        DoTheyTalk.com - Does ur fav movie pass the Bechdel Test? <i data-lucide="arrow-up-right"
-                            class="arrow-icon"></i>
-                    </a>
-                </div>
-            </section>
-        </div>
+    <!-- .content centers itself in the page and bottom-aligns its two children -->
+    <main class="content">
 
-        <!-- Bottom links -->
-        <div class="bottom-links">
-            <a href="resume.pdf" target="_blank" class="bottom-link">
-                <i data-lucide="file-text" class="bottom-icon"></i>
-                Resume
-            </a>
-            <a href="https://www.linkedin.com/in/vrunda-tambe/" target="_blank" rel="noopener" class="bottom-link">
-                <i data-lucide="link" class="bottom-icon"></i>
-                Linkedin
-            </a>
-        </div>
-
-        <!-- Footer icons - Lucide icons -->
-        <div class="footer-icons">
-            <i data-lucide="flower"></i>
-            <i data-lucide="dog"></i>
-            <i data-lucide="croissant"></i>
-            <i data-lucide="heart"></i>
-            <i data-lucide="ice-cream-cone"></i>
-            <i data-lucide="piano"></i>
-            <i data-lucide="pizza"></i>
-            <i data-lucide="smile"></i>
-            <i data-lucide="origami"></i>
-            <i data-lucide="volleyball"></i>
-            <i data-lucide="brush"></i>
-        </div>
+    <!-- Hero text: left side, fills content height -->
+    <div class="hero">
+        <h1>
+            <div class="word text-dark"><span>P</span><span>r</span><span>o</span><span>d</span><span>u</span><span>c</span><span>t</span></div>
+            <div class="word text-dark"><span>D</span><span>e</span><span>s</span><span>i</span><span>g</span><span>n</span><span>e</span><span>r</span></div>
+            <div class="word text-blue"><span>C</span><span>u</span><span>r</span><span>i</span><span>o</span><span>u</span><span>s</span></div>
+            <div class="word text-blue"><span>C</span><span>r</span><span>e</span><span>a</span><span>t</span><span>i</span><span>v</span><span>e</span></div>
+        </h1>
     </div>
 
+    <!-- Work history: right column, pinned to bottom -->
+    <div class="work-section">
+
+        <div class="work-item">
+            <div class="work-item-header">
+                <span class="company">Fieldguide</span>
+                <span class="work-line"></span>
+                <span class="year">2025 - present</span>
+            </div>
+            <p class="role">Sr. Product Designer</p>
+        </div>
+
+        <div class="work-item">
+            <div class="work-item-header">
+                <span class="company">Willow</span>
+                <span class="work-line"></span>
+                <span class="year">2022 - 2025</span>
+            </div>
+            <p class="role">Sr. Product Designer</p>
+        </div>
+
+        <div class="work-item">
+            <div class="work-item-header">
+                <span class="company">Fifth Tribe</span>
+                <span class="work-line"></span>
+                <span class="year">2021 - 2023</span>
+            </div>
+            <p class="role">UI/UX Designer</p>
+        </div>
+
+    </div>
+
+    </main>
+
+    </div><!-- end .hero-screen -->
+
+    <!--
+        Portfolio grid — visible on scroll.
+        Each row has 4 cells. Filled cells have a label strip + grey placeholder.
+        Empty cells are just the background showing through the grid lines.
+    -->
+    <section class="portfolio-grid">
+
+        <!-- Row 1: col 3 filled -->
+        <div class="grid-cell"></div>
+        <div class="grid-cell"></div>
+        <div class="grid-cell">
+            <div class="cell-meta">
+                <span>Fieldguide - AI powered Audit</span>
+            </div>
+            <div class="cell-fill"></div>
+        </div>
+        <div class="grid-cell"></div>
+
+        <!-- Row 2: col 1 filled -->
+        <div class="grid-cell">
+            <div class="cell-meta">
+                <span>Willow - B2B SaaS, Digital Twins</span>
+            </div>
+            <div class="cell-fill"></div>
+        </div>
+        <div class="grid-cell"></div>
+        <div class="grid-cell"></div>
+        <div class="grid-cell"></div>
+
+        <!-- Row 3: col 4 filled -->
+        <div class="grid-cell"></div>
+        <div class="grid-cell"></div>
+        <div class="grid-cell"></div>
+        <div class="grid-cell">
+            <div class="cell-meta">
+                <span>Plantorium - A cozy game</span>
+            </div>
+            <div class="cell-fill"></div>
+        </div>
+
+    </section>
+
     <script>
-        lucide.createIcons();
+        /* Pick a random accent color for "Curious Creative" on every page load */
+        const accentColors = [
+            '#708fb7', /* steel blue   — 3.1:1 */
+            '#B8705A', /* terracotta   — 3.8:1 */
+            '#6A8F76', /* sage green   — 3.4:1 */
+            '#9B6B8A', /* dusty mauve  — 4.3:1 */
+            '#A67C52', /* warm camel   — 3.7:1 */
+            '#7B8FA0', /* cool slate   — 3.2:1 */
+        ];
+        const pickedColor = accentColors[Math.floor(Math.random() * accentColors.length)];
+        document.documentElement.style.setProperty('--curious-color', pickedColor);
+
+        async function flickerLetter(spanEl, times) {
+            for (let i = 0; i < times; i++) {
+                await new Promise(resolve => {
+                    spanEl.style.opacity = '0';
+                    setTimeout(() => {
+                        spanEl.style.opacity = '1';
+                        setTimeout(resolve, 120 + Math.random() * 80);
+                    }, 100 + Math.random() * 80);
+                });
+                if (i < times - 1) {
+                    await new Promise(r => setTimeout(r, 60 + Math.random() * 100));
+                }
+            }
+        }
+
+        async function runFlicker() {
+            const letters = document.querySelectorAll('.word span');
+            const count = Math.floor(Math.random() * 4) + 5;
+            const picked = [...letters].sort(() => Math.random() - 0.5).slice(0, count);
+
+            const promises = picked.map((span, i) => {
+                const times = Math.floor(Math.random() * 2) + 2;
+                const startDelay = i * (80 + Math.random() * 80);
+                return new Promise(resolve =>
+                    setTimeout(() => flickerLetter(span, times).then(resolve), startDelay)
+                );
+            });
+
+            await Promise.all(promises);
+            document.querySelectorAll('.word span').forEach(s => s.style.opacity = '1');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(runFlicker, 400);
+        });
     </script>
+
 </body>
 
 </html>
