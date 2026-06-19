@@ -191,6 +191,58 @@
             text-align: right;
         }
 
+        /* ── Work sections (below hero) ── */
+
+        .work-sections {
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            gap: 60px;
+            background-color: #ffffff;
+        }
+
+        .section-block {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .section-title {
+            font-family: 'Acorn', sans-serif;
+            font-size: 24px;
+            font-weight: normal;
+            letter-spacing: 0.24px;
+            color: #22272d;
+        }
+
+        .section-cards {
+            display: flex;
+            gap: 60px;
+        }
+
+        .card {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .card-image {
+            width: 100%;
+            height: 271px;
+            background-color: #d9d9d9;
+            border-radius: 12px;
+            flex-shrink: 0;
+        }
+
+        .card-caption {
+            font-family: 'Arimo', sans-serif;
+            font-size: 16px;
+            font-weight: 400;
+            color: #22272d;
+            letter-spacing: 0.16px;
+        }
+
         /* ── Mobile ── */
         @media (max-width: 700px) {
             .hero-screen {
@@ -217,6 +269,20 @@
             .work-section {
                 width: 100%;
                 gap: 32px;
+            }
+
+            .work-sections {
+                padding: 32px 24px;
+                gap: 48px;
+            }
+
+            .section-cards {
+                flex-direction: column;
+                gap: 32px;
+            }
+
+            .card-image {
+                height: 200px;
             }
         }
     </style>
@@ -282,6 +348,63 @@
     </main>
 
     </div><!-- end .hero-screen -->
+
+    <section class="work-sections">
+
+        <!-- Fieldguide: 2 cards -->
+        <div class="section-block">
+            <h2 class="section-title">Fieldguide</h2>
+            <div class="section-cards">
+                <div class="card">
+                    <div class="card-image"></div>
+                    <p class="card-caption">Making AI visible and auditable (Agents side panel + column)</p>
+                </div>
+                <div class="card">
+                    <div class="card-image"></div>
+                    <p class="card-caption">Orchestrator Testing Workspace: A conversational, AI-native UI for end to end testing in Financial Audit</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Willow: 2 cards -->
+        <div class="section-block">
+            <h2 class="section-title">Willow</h2>
+            <div class="section-cards">
+                <div class="card">
+                    <div class="card-image"></div>
+                    <p class="card-caption">Approve and accept</p>
+                </div>
+                <div class="card">
+                    <div class="card-image"></div>
+                    <p class="card-caption">Sustainability</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Other Projects: 4 cards -->
+        <div class="section-block">
+            <h2 class="section-title">Other Projects</h2>
+            <div class="section-cards">
+                <div class="card">
+                    <div class="card-image"></div>
+                    <p class="card-caption">Project Name</p>
+                </div>
+                <div class="card">
+                    <div class="card-image"></div>
+                    <p class="card-caption">Project Name</p>
+                </div>
+                <div class="card">
+                    <div class="card-image"></div>
+                    <p class="card-caption">Project Name</p>
+                </div>
+                <div class="card">
+                    <div class="card-image"></div>
+                    <p class="card-caption">Project Name</p>
+                </div>
+            </div>
+        </div>
+
+    </section>
 
     <script>
         /* Pick a random accent color for "Curious Creative" on every page load */
