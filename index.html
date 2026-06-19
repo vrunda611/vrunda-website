@@ -243,6 +243,26 @@
             letter-spacing: 0.16px;
         }
 
+        /* Fieldguide-specific layout: text left, big image right */
+        .fieldguide-row {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            width: 100%;
+        }
+
+        .fieldguide-row .card-caption {
+            flex: 1;
+        }
+
+        .fieldguide-image {
+            flex: 3;
+            width: 0; /* flex will size it — prevents img from overflowing */
+            min-width: 0;
+            height: auto;
+            border-radius: 12px;
+        }
+
         /* ── Mobile ── */
         @media (max-width: 700px) {
             .hero-screen {
@@ -351,18 +371,12 @@
 
     <section class="work-sections">
 
-        <!-- Fieldguide: 2 cards -->
+        <!-- Fieldguide: text left, large image right -->
         <div class="section-block">
             <h2 class="section-title">Fieldguide</h2>
-            <div class="section-cards">
-                <div class="card">
-                    <div class="card-image"></div>
-                    <p class="card-caption">Making AI visible and auditable (Agents side panel + column)</p>
-                </div>
-                <div class="card">
-                    <div class="card-image"></div>
-                    <p class="card-caption">Orchestrator Testing Workspace: A conversational, AI-native UI for end to end testing in Financial Audit</p>
-                </div>
+            <div class="fieldguide-row">
+                <p class="card-caption">Orchestrator Testing Workspace: A conversational, AI-native UI for end to end testing in Financial Audit</p>
+                <img class="fieldguide-image" src="Orchestrator Mock 1.png" alt="Orchestrator Testing Workspace">
             </div>
         </div>
 
