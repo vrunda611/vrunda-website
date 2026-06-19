@@ -246,18 +246,19 @@
         /* Fieldguide-specific layout: text left, big image right */
         .fieldguide-row {
             display: flex;
-            align-items: center;
-            gap: 24px;
+            align-items: flex-start;
+            justify-content: space-between;
             width: 100%;
         }
 
         .fieldguide-row .card-caption {
-            flex: 1;
+            flex: 0 0 clamp(160px, 20%, 250px);
+            margin-top: 4px;
         }
 
         .fieldguide-image {
-            flex: 3;
-            width: 0; /* flex will size it — prevents img from overflowing */
+            flex: 0 0 65%;
+            width: 65%;
             min-width: 0;
             height: auto;
             border-radius: 12px;
@@ -380,18 +381,12 @@
             </div>
         </div>
 
-        <!-- Willow: 2 cards -->
+        <!-- Willow: text left, large image right -->
         <div class="section-block">
             <h2 class="section-title">Willow</h2>
-            <div class="section-cards">
-                <div class="card">
-                    <div class="card-image"></div>
-                    <p class="card-caption">Approve and accept</p>
-                </div>
-                <div class="card">
-                    <div class="card-image"></div>
-                    <p class="card-caption">Sustainability</p>
-                </div>
+            <div class="fieldguide-row">
+                <p class="card-caption">Increasing Willow's Onboarding Efficiency</p>
+                <img class="fieldguide-image" src="Willow Mock 1.png" alt="Increasing Willow's Onboarding Efficiency">
             </div>
         </div>
 
