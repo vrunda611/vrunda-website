@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vrunda Tambe – Product Designer</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <!-- Arimo from Google Fonts: used for work item text -->
@@ -244,18 +245,47 @@
             letter-spacing: 0.16px;
         }
 
+        .card-caption-link {
+            text-decoration: none;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .card-caption-link:hover {
+            color: #3E67FA;
+            text-decoration: underline;
+        }
+
         /* Fieldguide-specific layout: text left, big image right */
         .fieldguide-row {
             display: flex;
-            align-items: flex-start;
+            align-items: center;
             justify-content: space-between;
             width: 100%;
         }
 
-        .fieldguide-row .card-caption {
+        .left-col {
             flex: 0 0 clamp(160px, 20%, 250px);
-            margin-top: 4px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
         }
+
+        .see-more-link {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            color: #2D2D2D;
+            text-decoration: none;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 16px;
+        }
+
+        .see-more-link:hover {
+            color: #3E67FA;
+        }
+
 
         .fieldguide-image {
             flex: 0 0 65%;
@@ -377,7 +407,10 @@
         <div class="section-block">
             <h2 class="section-title">Fieldguide</h2>
             <div class="fieldguide-row">
-                <p class="card-caption">Orchestrator Testing Workspace: A conversational, AI-native UI for end to end testing in Financial Audit</p>
+                <div class="left-col">
+                    <p class="card-caption">Orchestrator Testing Workspace: A conversational, AI-native UI for end to end testing in Financial Audit</p>
+                    <p class="card-caption">Link coming soon</p>
+                </div>
                 <img class="fieldguide-image" src="Orchestrator Mock 1.png" alt="Orchestrator Testing Workspace">
             </div>
         </div>
@@ -386,8 +419,13 @@
         <div class="section-block">
             <h2 class="section-title">Willow</h2>
             <div class="fieldguide-row">
-                <p class="card-caption">Increasing Willow's Onboarding Efficiency</p>
-                <img class="fieldguide-image" src="Willow Mock 1.png" alt="Increasing Willow's Onboarding Efficiency">
+                <div class="left-col">
+                    <p class="card-caption">Increasing Willow's Onboarding Efficiency</p>
+                    <a href="https://www.figma.com/deck/VxfpSvcHPUVqVc4nYZaDe5/Willow---Increasing-deployment-efficiency?node-id=1-99&viewport=-8708%2C-1370%2C0.5&t=nXJ4r2TbjLezAmKv-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1" target="_blank" rel="noopener" class="see-more-link">See more <i data-lucide="arrow-up-right" style="width:20px;height:20px;flex-shrink:0;"></i></a>
+                </div>
+                <a href="https://www.figma.com/deck/VxfpSvcHPUVqVc4nYZaDe5/Willow---Increasing-deployment-efficiency?node-id=1-99&viewport=-8708%2C-1370%2C0.5&t=nXJ4r2TbjLezAmKv-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1" target="_blank" rel="noopener" style="flex: 0 0 65%; width: 65%; display: block;">
+                    <img class="fieldguide-image" src="Willow Mock 1.png" alt="Increasing Willow's Onboarding Efficiency" style="width: 100%;">
+                </a>
             </div>
         </div>
 
@@ -397,15 +435,15 @@
             <div class="section-cards">
                 <div class="card">
                     <img class="card-image" src="bechdel2.gif" alt="Do They Talk" style="object-fit: cover;">
-                    <p class="card-caption">Do They Talk: Does your fav movie pass the Bechdel Test?</p>
+                    <a href="https://dotheytalk.com" target="_blank" rel="noopener" class="card-caption card-caption-link">Do They Talk: Does your fav movie pass the Bechdel Test?<i data-lucide="arrow-up-right" style="width:20px;height:20px;flex-shrink:0;"></i></a>
                 </div>
                 <div class="card">
                     <img class="card-image" src="Beach_Ladies copy.jpg" alt="Beach Ladies and other illustrations" style="object-fit: cover;">
-                    <p class="card-caption">Beach Ladies and other illustrations</p>
+                    <a href="https://dribbble.com/grilldcheese" target="_blank" rel="noopener" class="card-caption card-caption-link">Beach Ladies and other illustrations<i data-lucide="arrow-up-right" style="width:20px;height:20px;flex-shrink:0;"></i></a>
                 </div>
                 <div class="card">
                     <img class="card-image" src="Plantorium mock 2.png" alt="Plantorium" style="object-fit: cover;">
-                    <p class="card-caption">Plantorium: A cozy plant-raising game</p>
+                    <a href="https://nunodasneves.itch.io/plantorium" target="_blank" rel="noopener" class="card-caption card-caption-link">Plantorium: A cozy plant-raising game<i data-lucide="arrow-up-right" style="width:20px;height:20px;flex-shrink:0;"></i></a>
                 </div>
             </div>
         </div>
@@ -458,6 +496,7 @@
         }
 
         document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
             setTimeout(runFlicker, 400);
         });
     </script>
